@@ -1,5 +1,6 @@
 package com.codewithnoelromero.springpactice;
 
+import com.codewithnoelromero.springpactice.notificationService.NotificationManager;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
