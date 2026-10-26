@@ -3,8 +3,10 @@ package com.codewithnoelromero.springpactice.entities;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 @Setter
 @Getter
@@ -16,13 +18,13 @@ import java.util.List;
 @ToString
 public class Category {
     @Id
-    @Column(nullable = false, name = "id")
+    @Column( name = "id")
     private Byte id;
-    @Column(nullable = false, name = "name")
+    @Column( name = "name")
     private String name;
 
     @OneToMany(mappedBy = "category")
     @Builder.Default
-    private List<Product> products = new LinkedList<>();
+    private Set<Product> products = new HashSet<>();
 
 }
