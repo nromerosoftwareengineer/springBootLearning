@@ -27,7 +27,7 @@ public class Profile {
     @Builder.Default
     private Integer loyaltyPoints = 0;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id")
     @MapsId
     @ToString.Exclude

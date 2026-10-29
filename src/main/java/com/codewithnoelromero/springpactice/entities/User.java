@@ -2,6 +2,7 @@ package com.codewithnoelromero.springpactice.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.data.repository.cdi.Eager;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -28,7 +29,7 @@ public class User {
     @Column(nullable = false, name = "password")
     private String password;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, orphanRemoval = true)
     @Builder.Default
     private List<Address> addresses = new ArrayList<>();
 
@@ -51,7 +52,7 @@ public class User {
         tag.getUsers().add(this);
     }
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "user_tags",
             joinColumns = @JoinColumn(name = "user_id"),
@@ -69,6 +70,6 @@ public class User {
     @Builder.Default
     private Set<Product> products = new HashSet<>();
 
-    @OneToOne(mappedBy = "user")
+    @OneToOne(mappedBy = "user", cascade = CascadeType.REMOVE)
     private Profile profile;
 }
